@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Privacy &amp; Terms</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap">
+<style>
+:root{--ink:#0d0c0b;--paper:#ecebe7;--sand:#c4ab84;--sand-deep:#8c7552;--bg:var(--ink);--fg:var(--paper);--mute:#8a857c;--accent:var(--sand);--line:color-mix(in srgb,var(--fg) 14%,transparent);
+--f-display:"DM Serif Display","Times New Roman",Georgia,serif;--f-body:"DM Sans","Helvetica Neue",Arial,sans-serif;--f-mono:"DM Sans","Helvetica Neue",Arial,sans-serif;--ease:cubic-bezier(.22,.8,.2,1);color-scheme:dark}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:var(--paper);--fg:var(--ink);--mute:#6c675f;--accent:var(--sand-deep);color-scheme:light}}
+:root[data-theme="light"]{--bg:var(--paper);--fg:var(--ink);--mute:#6c675f;--accent:var(--sand-deep);color-scheme:light}
+:root[data-theme="dark"]{--bg:var(--ink);--fg:var(--paper);--mute:#8a857c;--accent:var(--sand);color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.wrap{max-width:1360px;margin-inline:auto;padding-inline:max(16px,env(safe-area-inset-left,0px))}
+@media (min-width:760px){.wrap{padding-inline:40px}}
+.label{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+header{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));left:0;right:0;z-index:20;display:flex;justify-content:center;padding-inline:16px;pointer-events:none}
+.hbar{pointer-events:auto;width:min(100%,max(56vw,340px));display:flex;align-items:center;gap:18px;padding:6px 8px 6px 26px;border-radius:999px;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line)}
+.hlogo{flex:none;width:clamp(170px,24vw,340px);display:flex;padding-block:8px;color:var(--fg)}.hlogo svg{width:100%;height:auto;max-height:52px}
+.hsec{flex:1;border-left:1px solid var(--line);padding-left:18px}
+.back{flex:none;font:500 14px var(--f-body);text-decoration:none;border:1px solid var(--line);border-radius:999px;height:40px;padding:0 16px;display:inline-flex;align-items:center}
+.back:hover{border-color:var(--fg)}
+main{padding-top:170px}
+h1{font-family:var(--f-display);font-weight:500;font-size:clamp(54px,10vw,160px);line-height:.88;letter-spacing:-.055em;margin:18px 0 22px}
+.intro{max-width:52ch;color:color-mix(in srgb,var(--fg) 78%,transparent);font-size:clamp(17px,1.5vw,20px)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:44px 0 28px}
+.filters button{font:500 14px var(--f-body);color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:999px;height:40px;padding:0 16px;cursor:pointer}
+.filters button.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.grid{display:grid;gap:56px 28px;grid-template-columns:1fr;padding-bottom:120px}
+@media (min-width:860px){.grid{grid-template-columns:1fr 1fr}.card:nth-child(4n+1),.card:nth-child(4n+4){grid-column:span 2}.card:nth-child(4n+1) .media,.card:nth-child(4n+4) .media{aspect-ratio:16/8}}
+.card{display:grid;gap:16px;scroll-margin-top:120px}
+.card[hidden]{display:none}
+.media{position:relative;aspect-ratio:4/3;border-radius:4px;overflow:hidden;background:color-mix(in srgb,var(--fg) 6%,transparent);display:grid;place-items:center}
+.media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s var(--ease),transform 1.2s var(--ease);transform:scale(1.04)}
+.media img.on{opacity:1;transform:none}
+.media.logos{background:var(--paper)}.media.logos img{object-fit:contain;padding:16%;transition:none;transform:none}
+.media .ph{font-family:var(--f-display);font-size:clamp(44px,6vw,96px);letter-spacing:-.045em;color:color-mix(in srgb,var(--fg) 28%,transparent)}
+.dots{position:absolute;left:14px;bottom:12px;display:flex;gap:5px;z-index:2}.dots i{width:6px;height:6px;border-radius:50%;background:#fff;opacity:.4}.dots i.on{opacity:1}
+.meta{display:grid;grid-template-columns:1fr auto;gap:4px 16px;align-items:baseline}
+.meta h2{font-family:var(--f-display);font-weight:500;font-size:clamp(28px,3vw,44px);letter-spacing:-.035em;margin:0;line-height:1}
+.meta .where{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.meta p{grid-column:1/-1;margin:0;color:var(--mute);font-size:15px}
+.tags{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.tags span{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--mute)}
+.soon{font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:14px;color:var(--mute)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Type system: DM Serif Display for headlines, DM Sans for text and UI, IBM Plex Sans Arabic for all Arabic */
+h1,h2,h3,.big-line,.statement,.num b,.wrow h3,.cap h3,.mrowi h3,.inline-list,.hl-meta b,.upcoming b,#menu nav a,.cta-big h2,#brief h2,.b-step h3,.meta h2,.hl-name,.media .ph{font-weight:400!important;letter-spacing:-.015em!important}
+.label,.kbd,.saved{letter-spacing:.1em}
+html[lang="ar"] body,html[lang="ar"] *{font-family:var(--f-ar)!important;letter-spacing:0!important}
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3,html[lang="ar"] .big-line,html[lang="ar"] .statement{font-weight:500!important;line-height:1.25}
+</style>
+<style>
+.doc{max-width:760px;padding:170px 0 120px}
+.doc h1{font-size:clamp(44px,7vw,96px)}
+.doc h2{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,3vw,38px);margin:56px 0 14px;scroll-margin-top:120px}
+.doc h3{font-family:var(--f-body);font-weight:500;font-size:17px;margin:28px 0 8px}
+.doc p,.doc li{color:color-mix(in srgb,var(--fg) 80%,transparent);font-size:17px;line-height:1.7}
+.doc ul{padding-left:20px}
+.doc a{color:var(--fg)}
+.toc{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.toc a{font-size:14px;border:1px solid var(--line);border-radius:999px;padding:8px 14px;text-decoration:none}
+</style></head>
+<body>
+<header><div class="hbar"><a class="hlogo" href="index.html" aria-label="Back to home"><svg aria-hidden="true" viewBox="0 0 787 100"><path fill="currentColor" fill-rule="evenodd" d="M774.62 35.38 L771.62 36.12 L769.38 37.12 L766.38 40.38 L765.12 43.00 L765.12 49.25 L766.12 51.50 L767.12 52.88 L768.88 54.62 L770.62 55.75 L773.50 56.75 L777.38 56.75 L780.00 55.88 L782.00 54.62 L784.75 51.50 L785.88 48.50 L785.88 43.62 L785.62 42.62 L784.50 40.38 L783.88 39.50 L781.25 37.00 L779.62 36.25 L776.38 35.38Z M0.00 0.62 L0.00 71.75 L0.50 72.12 L0.75 72.75 L1.00 76.12 L1.88 78.00 L3.00 82.25 L3.75 83.25 L5.12 86.50 L5.88 87.38 L6.12 88.38 L7.88 90.62 L8.12 91.38 L10.00 93.62 L14.00 97.75 L16.00 99.25 L16.25 99.88 L16.50 99.88 L16.75 98.25 L16.62 74.50 L16.88 73.38 L17.50 72.88 L18.38 73.12 L681.25 73.00 L682.00 73.75 L682.00 99.88 L698.75 99.88 L698.75 57.38 L699.38 56.75 L720.88 57.00 L728.12 64.62 L762.50 99.50 L762.50 99.88 L785.75 99.88 L785.75 99.50 L759.00 72.12 L756.38 70.00 L755.50 69.00 L751.38 66.12 L749.00 64.88 L748.38 64.25 L745.12 62.75 L744.12 62.00 L742.75 61.75 L741.88 61.12 L739.38 60.12 L737.50 59.88 L736.00 59.00 L734.62 58.88 L731.88 58.12 L729.88 58.00 L726.25 57.12 L722.12 57.00 L721.62 56.62 L721.62 56.25 L778.12 0.50 L778.25 0.00 L771.62 0.00 L771.62 0.25 L771.12 0.62 L766.25 1.12 L764.25 2.00 L760.12 3.00 L758.38 4.00 L757.12 4.25 L755.25 5.12 L754.25 5.88 L752.75 6.38 L746.88 10.12 L744.00 12.38 L719.00 36.75 L718.25 37.25 L699.50 55.88 L699.25 55.88 L698.75 55.25 L698.62 51.38 L696.88 41.12 L696.00 39.38 L695.75 37.62 L695.00 36.25 L694.75 35.12 L694.00 34.00 L693.75 32.62 L692.25 30.25 L691.88 29.12 L691.12 28.25 L688.88 24.50 L685.38 20.12 L682.75 17.38 L682.25 17.25 L682.00 17.88 L682.00 55.75 L681.50 56.50 L681.00 56.62 L216.62 57.25 L215.25 57.50 L179.50 57.38 L177.88 57.62 L52.50 57.88 L47.62 58.12 L42.12 59.00 L40.25 59.88 L37.62 60.25 L36.50 60.88 L35.38 61.12 L34.12 61.88 L32.75 62.12 L31.12 63.12 L28.62 64.12 L27.62 65.00 L26.75 65.25 L24.50 66.88 L23.62 67.25 L17.38 72.25 L17.00 72.12 L16.62 71.50 L16.50 17.62 L17.12 16.88 L681.12 16.88 L681.62 16.50 L678.12 13.12 L674.38 10.12 L672.38 9.00 L671.38 8.00 L670.50 7.75 L668.00 6.12 L667.00 5.88 L664.00 4.25 L662.62 4.00 L661.00 3.00 L656.50 2.00 L654.50 1.12 L649.38 0.75 L648.50 0.50 L648.12 0.00 L16.75 0.00 L16.62 15.50 L16.25 16.00 L15.38 15.88 L14.62 14.88 L0.50 0.75Z"/></svg></a><div class="hsec"><span class="label">Privacy &amp; Terms</span></div><a class="back" href="index.html">← Home</a></div></header>
+<main><div class="wrap"><article class="doc">
+<span class="label">Last updated · October 2026</span>
+<h1>Privacy &amp; Terms</h1>
+<p>This page explains what happens to the information you share through this website, and the terms for using it. It is written to be read, so it is short and plain.</p>
+<nav class="toc"><a href="#privacy">Privacy Policy</a><a href="#terms">Terms of use</a><a href="#contact">Contact</a></nav>
+
+<h2 id="privacy">Privacy Policy</h2>
+<h3>Who is responsible</h3>
+<p>This website belongs to Abdalrahman Khairy, an independent brand strategist and identity designer based in Damietta, Egypt. I am responsible for the information you share here.</p>
+<h3>What I collect</h3>
+<ul>
+<li>What you enter in the discovery form: the services you need, your brand’s stage, your name and role, your website or Instagram, your country, when you’d like to start, how you found me, and the contact details you choose to give (email, WhatsApp number, or a preferred day and time for a call).</li>
+<li>A draft of the form is kept in your own browser so you don’t lose your answers. It never leaves your device unless you send the form, and it is removed once you do.</li>
+<li>Basic, anonymous visit statistics may be collected by the hosting provider to keep the site working well.</li>
+</ul>
+<h3>Why I use it</h3>
+<p>Only to reply to you, prepare for our conversation, and arrange the meeting you asked for. I do not use your answers for advertising and I never sell or rent them.</p>
+<h3>Who can see it</h3>
+<p>Only me. Your answers may pass through the services that deliver the form and my email, which process them on my behalf. I don’t share them with anyone else unless the law requires it.</p>
+<h3>How long I keep it</h3>
+<p>For as long as we are in conversation or working together, and for a reasonable time after that for my records. You can ask me to delete it at any time.</p>
+<h3>Your choices</h3>
+<p>You can ask to see, correct or delete what you shared, or ask me to stop contacting you. Just write to the email below and I’ll take care of it.</p>
+
+<h2 id="terms">Terms of use</h2>
+<h3>The work shown here</h3>
+<p>The projects on this site are shown to present my work. Brand names, logos and visuals belong to their owners and clients. Student projects belong to the students who made them and are shown with their permission. Please don’t reuse any of it without permission.</p>
+<h3>The content</h3>
+<p>The writing and design of this website are my own. You are welcome to share links to it.</p>
+<h3>Enquiries are not agreements</h3>
+<p>Sending the form or booking a meeting does not create a contract. Any project starts only after we agree on a written proposal with its scope, timeline and fees.</p>
+<h3>Links to other sites</h3>
+<p>Links to Behance, LinkedIn, Instagram, WhatsApp or I Can Coach You lead to services with their own policies.</p>
+
+<h2 id="contact">Contact</h2>
+<p>Questions about this page, or a request about your information: <a href="mailto:abdalrahmankhairy.gd@gmail.com">abdalrahmankhairy.gd@gmail.com</a></p>
+</article></div></main>
+<footer><div class="wrap"><span>© 2026 Abdalrahman Khairy</span><a href="index.html">Home</a></div></footer>
+<script>try{const t=localStorage.getItem('ak-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</body></html>
