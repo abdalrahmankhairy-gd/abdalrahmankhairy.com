@@ -1,0 +1,1 @@
+!function(){var t=document.documentElement;t.classList.add("js");try{var e=localStorage.getItem("ak-theme");e&&(t.dataset.theme=e)}catch(t){}}(),function(){if(window.top!==window.self)try{window.top.location.replace(window.self.location.href)}catch(t){document.documentElement.style.visibility="hidden"}}();
