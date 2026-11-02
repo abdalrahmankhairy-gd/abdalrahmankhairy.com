@@ -487,6 +487,7 @@ html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3,html[lang="ar"] .big-li
   </div>
   <div class="b-bar" aria-hidden="true" style="margin-top:16px"><i id="bBar"></i></div>
   <form class="b-main" id="briefForm" novalidate>
+    <input type="checkbox" name="botcheck" id="botcheck" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" aria-hidden="true">
     <section class="b-step on" data-step="0" aria-labelledby="bs0">
       <h3 id="bs0">What can I help you with?<small>Choose everything that applies. You don’t need to be sure yet.</small></h3>
       <fieldset class="b-q" data-req="type"><legend>Services</legend>
@@ -569,7 +570,7 @@ html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3,html[lang="ar"] .big-li
         <div class="tick" aria-hidden="true">✓</div>
         <h3 id="bs4" tabindex="-1">Thank you<span id="doneName"></span>. Your brand’s story has reached me.</h3>
         <ol><li>I read your answers carefully.</li><li>I reach you the way you chose, to confirm the time.</li><li>We meet online and talk about where the brand is going.</li></ol>
-        <p class="hint" style="font-size:13px">This is a design preview, so the form doesn’t send yet. <a id="mailFallback" href="#" style="color:var(--fg)">Send the same answers by email</a> instead.</p>
+        <p class="hint" style="font-size:13px">A copy of your answers is also available <a id="mailFallback" href="#" style="color:var(--fg)">by email</a>, if you’d like to send them to me directly.</p>
       </div>
     </section>
   </form>
@@ -843,9 +844,18 @@ function show(i){bCur=i;reached=Math.max(reached,i);steps.forEach((s,k)=>s.class
   const h=steps[i].querySelector('h3');if(h&&brief.classList.contains('open')){h.setAttribute('tabindex','-1');h.focus({preventScroll:true})}}
 bNext.addEventListener('click',()=>{if(bCur<LAST){if(!check(bCur,true))return;show(bCur+1);return}
   const c=document.getElementById('fConsent');if(!c.checked){document.getElementById('consentErr').textContent='Please confirm to send.';c.focus();return}
-  document.getElementById('consentErr').textContent='';const d=vals();document.getElementById('doneName').textContent=d.name?', '+d.name.trim().split(' ')[0]:'';
-  const body=summary().map(([l,v])=>l+': '+v).join('\n');document.getElementById('mailFallback').href='mailto:abdalrahmankhairy.gd@gmail.com?subject='+encodeURIComponent('Discovery meeting: '+(d.name||''))+'&body='+encodeURIComponent(body);
-  try{localStorage.removeItem(DRAFT)}catch(e){}show(LAST+1)});
+  const ce=document.getElementById('consentErr');ce.textContent='';const d=vals();document.getElementById('doneName').textContent=d.name?', '+d.name.trim().split(' ')[0]:'';
+  const body=summary().map(([l,v])=>l+': '+v).join('\n');const mailto='mailto:abdalrahmankhairy.gd@gmail.com?subject='+encodeURIComponent('Discovery meeting: '+(d.name||''))+'&body='+encodeURIComponent(body);
+  document.getElementById('mailFallback').href=mailto;
+  if(bNext.dataset.busy)return;bNext.dataset.busy='1';const lbl=bNext.textContent;bNext.textContent='Sending…';
+  const payload={access_key:'17abf49a-24e1-49ee-bc71-ef122ea19ea2',subject:'Discovery meeting request: '+(d.name||'New enquiry'),from_name:'abdalrahmankhairy.com',name:d.name||'',message:body,botcheck:document.getElementById('botcheck').checked};
+  if(needMail(d)&&d.email)payload.email=d.email;
+  fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(payload)})
+   .then(r=>r.json().then(j=>({ok:r.ok&&j.success})).catch(()=>({ok:false})))
+   .then(x=>{delete bNext.dataset.busy;bNext.textContent=lbl;
+     if(x.ok){try{localStorage.removeItem(DRAFT)}catch(e){}show(LAST+1)}
+     else{ce.innerHTML='It didn’t send just now. Please try again, or <a href="'+mailto+'" style="color:inherit;text-decoration:underline">send the same answers by email</a>.'}})
+   .catch(()=>{delete bNext.dataset.busy;bNext.textContent=lbl;ce.innerHTML='It didn’t send just now. Please try again, or <a href="'+mailto+'" style="color:inherit;text-decoration:underline">send the same answers by email</a>.'})});
 bBack.addEventListener('click',()=>show(Math.max(0,bCur-1)));
 document.querySelectorAll('#bSteps [data-go]').forEach(b=>b.addEventListener('click',()=>{const t=+b.dataset.go;if(t<=reached)show(t)}));
 bf.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey&&e.target.tagName!=='BUTTON'){e.preventDefault();bNext.click()}});
